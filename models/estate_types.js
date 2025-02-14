@@ -1,14 +1,16 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const EstateTypes = sequelize.define("estateTypes", {
+
+
+const EstateTypes = sequelize.define("EstateTypes", {
   id: {
     type: DataTypes.BIGINT,
     autoIncrement: true,
     primaryKey: true,
   },
   name: {
-    type: DataTypes.VARCHAR,
+    type: DataTypes.STRING,
     allowNull: false,
   },
 });

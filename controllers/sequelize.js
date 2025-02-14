@@ -1,13 +1,15 @@
+const { Sequelize } = require('sequelize');
 const City = require('./../models/cities');   
 const States = require('./../models/states');    
 
+
 States.hasMany(City, {
-  foreignKey: 'stateId',  
+  foreignKey: 'state_id',  
   as: 'cities'            
 });
 
 City.belongsTo(States, {
-  foreignKey: 'stateId',  
+  foreignKey: 'state_id',  
   as: 'state'             
 });
 

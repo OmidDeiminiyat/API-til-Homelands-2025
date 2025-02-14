@@ -1,7 +1,9 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../server');  // Sequelize instance from server.js
-const States = require('./states');
+const sequelize = require("../config/database");
+const { Sequelize, DataTypes } = require('sequelize');
 
+const EnergyLabel = require("./energy_labels"); 
+const EstateTypes = require("./estate_types");
+const States = require("./states");  
 
 const City = sequelize.define("City", {
   id: {
@@ -14,20 +16,21 @@ const City = sequelize.define("City", {
     allowNull: false,
   },
   name: {
-    type: DataTypes.Varchar,
+    type: DataTypes.STRING, 
     allowNull: false,
   },
-  state_id: {  
+  state_id: {
     type: DataTypes.BIGINT,
     allowNull: false,
     references: {
-      model: States,
+      model: States, 
       key: 'id',
     },
   }
 });
 
-City.belongsTo(States, { foreignKey: 'state_id' });
-States.hasMany(City, { foreignKey: 'state_id' });
+// Define associations here, if needed
+City.belongsTo(States, { foreignKey: 'state_id', as: 'state' });
+States.hasMany(City, { foreignKey: 'state_id', as: 'cities' });
 
 module.exports = City;

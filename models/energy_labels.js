@@ -1,16 +1,16 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const Energy = sequelize.define("energy", {
+const EnergyLabel = sequelize.define("EnergyLabel", {
   id: {
     type: DataTypes.BIGINT,
     autoIncrement: true,
     primaryKey: true,
   },
   name: {
-    type: DataTypes.varchar,
+    type: DataTypes.STRING, 
     allowNull: false,
   },
 });
 
-module.exports = Energy;
+module.exports = EnergyLabel;
